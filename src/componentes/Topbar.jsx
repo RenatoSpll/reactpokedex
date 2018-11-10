@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
@@ -33,4 +31,4 @@ class Topbar extends Component {
   }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(Topbar);
