@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core';
 
 
-
 const styles = {
   root: {
     flexGrow: 1,
@@ -17,9 +16,20 @@ const styles = {
 };
 
 
-class App extends Component {
+class Topbar extends Component {
   render() {
-   return <h1>top</h1>
+    const {classes, titulo} = this.props
+    return (
+      <div className={classes.root}>
+      <AppBar position="static" color="secondary">
+        <Toolbar>
+          <Typography variant="h6" color="inherit">
+            {titulo}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      </div>
+    );
   }
 }
 
