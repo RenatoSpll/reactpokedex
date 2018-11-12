@@ -3,17 +3,25 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
+import { Typography, CardContent } from '@material-ui/core';
+
+
+
 
 class PokemonCard extends React.Component {
     
     state = {
         
-        foto: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png',
-        nome: 'Heracross',
-        num: '214'
+        foto: '',
+        nome: '',
+        num: '',
+        ability: ''
+
         
      
     }
+
+      
 
     componentWillMount(){
         console.log("Vou montar")
@@ -31,28 +39,40 @@ class PokemonCard extends React.Component {
         const nome = data.name
         const foto = data.sprites.front_default
         const num = data.id
-        var propri = [data.name, data.sprites.front_default, data.id]
-        this.setState({nome, foto, num})
-        
-        
+        //console.log(data.abilities[1].ability.name)
+        const ability = data.abilities[1].ability.name
+        //var propri = [data.name, data.sprites.front_default, data.id]
+        this.setState({nome, foto, num, ability})
+        //this.setState({nome, foto, num})
     }
 
+    primeiraMaiscula(string) {
+        return string.replace(string.charAt(0), string.charAt(0).toUpperCase())
+    }
 
     render(){
-        const { foto, nome, num} = this.state
+        const { foto, nome, num, ability} = this.state
         console.log("Renderizei")
+
+        
         return (
         <Card>
         <CardHeader
-            avatar= { <Avatar style={{ width: 80, height: 80}} src = {foto} aria-label ='Recipe' />}
-            title = {nome}
+            style = {{width:1, height:100, padding: 1}}
+            avatar= { <Avatar style={{ width: 96, height: 96, padding:0}} src = {foto} aria-label ='Recipe' />}
+            title = {this.primeiraMaiscula(nome)}
             subheader = {num}
-
-                        
-    
-                
+            
+            
 
         />
+        <CardContent  style = {{marginLeft: 20, marginBottom:20, padding:0 }}>
+            <Typography component = "p" >
+                Ability: {this.primeiraMaiscula(ability)}
+            </Typography>
+
+        </CardContent>
+        
         </Card>
         )
         
