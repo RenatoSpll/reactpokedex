@@ -18,7 +18,7 @@ const styles = {
     flexGrow: 1,
   },
 };
-const pokemons =[214, 471, 398, 501, 552, 523]
+const pokemons =[214, 471, 398, 501, 553, 523, 202, 100, 454]
 const listaPokemons = (props) => pokemons.map(id =>{
   return (
     <div
@@ -40,9 +40,8 @@ const botao = (props) =>{
       <Button 
         variant = "fab" 
         color = "primary" 
-        aria-label="Random" 
-        position =  "relative"
-        style = {{padding: 20}}
+        aria-label="Random"
+        style = {{ height: 80, width: 80}} 
         onClick = { () => props.history.push(`/pokemon/${Math.floor(generateRandomNumber(1,151)) }`)}
         //onClick = { () => pokemons.push(Math.floor(generateRandomNumber(1,151)))}
         >Random</Button>
@@ -56,7 +55,7 @@ class Pokedex extends Component {
      <div style={{marginTop:64}}>
        <Topbar titulo = "Pokedex" cor = "primary"/>
        <div style={{marginTop: 64}}>{listaPokemons(this.props)}</div>
-        {botao(this.props)}
+        <div style = {{position: "fixed", padding: 20, bottom: 0 , float: "right", right: 10}}>{botao(this.props)}</div>
         
      </div>
 
