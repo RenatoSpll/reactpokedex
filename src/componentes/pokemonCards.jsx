@@ -40,9 +40,15 @@ class PokemonCard extends React.Component {
         const foto = data.sprites.front_default
         const num = data.id
         //console.log(data.abilities[1].ability.name)
-        const ability = data.abilities[1].ability.name
+        try {
+            const ability = data.abilities[1].ability.name
+            this.setState({nome, foto, num, ability})
+        } catch (error) {
+            this.setState({nome, foto, num})
+        }
+        
         //var propri = [data.name, data.sprites.front_default, data.id]
-        this.setState({nome, foto, num, ability})
+        
         //this.setState({nome, foto, num})
     }
 

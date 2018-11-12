@@ -43,7 +43,7 @@ const botao = (props) =>{
         aria-label="Random" 
         position =  "relative"
         style = {{padding: 20}}
-        onClick = { () => props.history.push(`/pokemon/${Math.floor(generateRandomNumber(1,807)) }`)}
+        onClick = { () => props.history.push(`/pokemon/${Math.floor(generateRandomNumber(1,151)) }`)}
         //onClick = { () => pokemons.push(Math.floor(generateRandomNumber(1,151)))}
         >Random</Button>
     
