@@ -8,7 +8,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import Dropdown from '../componentes/Dropdown';
+import Dropdown from './Dropdown';
 
 const styles = theme => ({
   root: {
@@ -56,7 +56,7 @@ const styles = theme => ({
 class Topbar extends Component {
   
   render() {
-    const {classes, titulo} = this.props
+    const {classes, titulo, history} = this.props
     return (
       <div className={classes.root}>
       <AppBar position="fixed" color="secondary">
@@ -65,7 +65,7 @@ class Topbar extends Component {
             { titulo }
             
           </Typography>
-          {/* <Dropdown style = {{margin:10, height: 1}}></Dropdown> */}
+          <Dropdown style = {{margin:10, height: 1}}></Dropdown>
           <div className={classes.search}>
               <div className={classes.searchIcon}>
               <SearchIcon/>

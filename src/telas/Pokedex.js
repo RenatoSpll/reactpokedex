@@ -78,7 +78,7 @@ class Pokedex extends Component {
      <div style={{marginTop:64}}>
         
        <Topbar titulo = "Pokedéx" cor = "primary" />
-       <Dropdown style = {{margin:10, height: 1, position: "fixed" }}></Dropdown>
+       {/* <Dropdown style = {{margin:10, height: 1, position: "fixed" }}></Dropdown> */}
        <div style={{marginTop: 64}}>{listaPokemons(this.props)}</div>
         <div style = {{position: "fixed", padding: 20, bottom: 0 , float: "right", right: 10}}>{botao(this.props)}</div>
         

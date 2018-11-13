@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { withRouter } from "react-router"
 
 class Dropdown extends React.Component {
     state = {
@@ -16,8 +17,11 @@ class Dropdown extends React.Component {
       this.setState({ anchorEl: null });
     };
 
-    mudarTela(){
-        this.props.history.push(`/gen1`)
+    mudarTela(gen){
+      const ngen = 'gen'+gen
+      console.log(this.props)  
+      this.props.history.push('/'+ngen)
+
     }
   
     render() {
@@ -38,16 +42,16 @@ class Dropdown extends React.Component {
             open={Boolean(anchorEl)}
             onClose={this.handleClose}
           >
-            <MenuItem onClick =  { () => this.mudarTela()}>Gen1</MenuItem>
-            <MenuItem onClick={this.handleClose}>Gen2</MenuItem>
-           <MenuItem onClick = { this.handleClose}>Gen3</MenuItem>
-            <MenuItem onClick = { this.handleClose}>Gen4</MenuItem>
-            <MenuItem onClick = { this.handleClose}>Gen5</MenuItem>
-            <MenuItem onClick = { this.handleClose}>Gen6</MenuItem>
+            <MenuItem onClick =  { () => this.mudarTela('1')}>Gen1</MenuItem>
+            <MenuItem onClick={() => this.mudarTela('2')}>Gen2</MenuItem>
+            <MenuItem onClick = { () => this.mudarTela('3')}>Gen3</MenuItem>
+            <MenuItem onClick = { () => this.mudarTela('4')}>Gen4</MenuItem>
+            <MenuItem onClick = { () => this.mudarTela('5')}>Gen5</MenuItem>
+            <MenuItem onClick = { () => this.mudarTela('6')}>Gen6</MenuItem>
           </Menu>
         </div>
       );
     }
   }
   
-  export default Dropdown;
+  export default withRouter(Dropdown);
