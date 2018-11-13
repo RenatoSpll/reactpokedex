@@ -21,21 +21,19 @@ class PokemonCard extends React.Component {
      
     }
 
-      
-
     componentWillMount(){
-        console.log("Vou montar")
+        //console.log("Vou montar")
     }
     componentDidMount(){
-        console.log("Montei")
+        //console.log("Montei")
         this.carregarPokemon()
     }
     
     carregarPokemon = async() => {
-        console.log(this.props.pokemonId)
+        //console.log(this.props.pokemonId)
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.pokemonId}/`)
         const data = await response.json()
-        console.log(data.name,)
+        //console.log(data.name)
         const nome = data.name
         const foto = data.sprites.front_default
         const num = data.id
@@ -58,7 +56,7 @@ class PokemonCard extends React.Component {
 
     render(){
         const { foto, nome, num, ability} = this.state
-        console.log("Renderizei")
+        //console.log("Renderizei")
 
         
         return (
@@ -68,15 +66,12 @@ class PokemonCard extends React.Component {
             avatar= { <Avatar style={{ width: 96, height: 96, padding:0}} src = {foto} aria-label ='Recipe' />}
             title = {this.primeiraMaiscula(nome)}
             subheader = {num}
-            
-            
-
         />
+
         <CardContent  style = {{marginLeft: 20, marginBottom:20, padding:0 }}>
             <Typography component = "p" >
                 Ability: {this.primeiraMaiscula(ability)}
             </Typography>
-
         </CardContent>
         
         </Card>

@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 
 import Topbar from '../componentes/Topbar'
 
+
 import PokemonCard from '../componentes/pokemonCards';
+import IconButton from '@material-ui/core/IconButton';
 
 
-
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-};
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+})
+
+function voltar(props){
+ props.history.goBack()
+}
 
 class Pokemon extends Component {
   render() {
@@ -20,7 +31,12 @@ class Pokemon extends Component {
         <Topbar titulo = "Pokemon" cor = "secondary"/>
         <div style={{marginTop: 64}}>
         <PokemonCard pokemonId ={id}/>
-    </div>
+        
+        <div>
+          <IconButton onClick = {() =>voltar(this.props)}>voltar</IconButton>
+        </div>
+        </div>
+        
     </div>
 
 
