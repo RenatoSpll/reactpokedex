@@ -7,7 +7,7 @@ import PokemonCard from '../componentes/pokemonCards';
 import IconButton from '@material-ui/core/IconButton';
 
 
-const styles = theme => ({
+/* const styles = theme => ({
   root: {
     flexGrow: 1,
   },
@@ -17,7 +17,7 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
-})
+}) */
 
 function voltar(props){
  props.history.goBack()

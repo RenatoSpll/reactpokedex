@@ -19,7 +19,7 @@ class Dropdown extends React.Component {
 
     mudarTela(gen){
       const ngen = 'gen'+gen
-      console.log(this.props)  
+      //console.log(this.props)  
       this.props.history.push('/'+ngen)
 
     }
@@ -30,6 +30,7 @@ class Dropdown extends React.Component {
       return (
         <div>
           <Button
+            style = {{color: "white", left: 10, padding: "2 200"}}
             aria-owns={anchorEl ? 'simple-menu' : undefined}
             aria-haspopup="true"
             onClick={this.handleClick}

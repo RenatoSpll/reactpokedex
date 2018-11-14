@@ -13,20 +13,22 @@ const pokemongen5 = [495,498,501]
 const pokemongen6 = [650, 653, 656]
 const pokemongen = [pokemongen1, pokemongen2, pokemongen3, pokemongen4, pokemongen5, pokemongen6]
  
+
 function definirGen(props){
   let path = props.location.pathname
-  console.log(path.split("/gen")[1]);
+  //console.log(path.split("/gen")[1]);
    return path.split("/gen")[1]
 }
 
+// função responsável por preencher os cards
 const listaPokemons = (props, gen) => pokemongen[gen-1].map(id =>{
-    console.log(props.location.pathname);
+    //console.log(props.location.pathname);
     definirGen(props)
     
     return (
       <div
         style={{margin: 10, cursor: 'pointer'}}
-        //key={id}
+        key={id}
         onClick = { () => props.history.push(`/pokemon/${id}`)}
         >
       
@@ -35,9 +37,6 @@ const listaPokemons = (props, gen) => pokemongen[gen-1].map(id =>{
   })
 
   class Geracao extends Component {
-    
-    
-    
     render() {
      return (
        <div style={{marginTop:64}}>
