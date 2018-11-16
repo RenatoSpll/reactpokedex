@@ -8,7 +8,44 @@ import InputBase from '@material-ui/core/InputBase';
 import { withStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import Dropdown from '../componentes/Dropdown';
+import Dropdown from './Dropdown';
+import Button from '@material-ui/core/Button';
+import { withRouter } from "react-router"
+
+
+
+const buscarid = async(busca, props)=>{
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon/')
+  const data = await response.json()
+  //const id = data.results[1].name
+  for (var i=0; i<data.results.length;i++){
+    //console.log(data.results[i].name)
+    if(data.results[i].name===busca){
+      var id = data.results[i].url
+      console.log("achei um:")
+      break
+    }
+  } 
+  
+  
+  //const string = ""
+  //id.split(https://pokeapi.co/api/v2/id).[1]
+  console.log(id.split("https://pokeapi.co/api/v2/pokemon/")[1])
+  id = id.split("https://pokeapi.co/api/v2/pokemon/")[1]
+  mudarTela(id,props)
+
+  //const url = id.url
+  //const string = "bulbassaur"
+  //string.slice(string.search(busca))
+}
+
+const mudarTela =(id, props) =>{
+  //console.log(this.props)  
+  props.history.push('/pokemon/'+id)
+
+}
+ 
+
 
 const styles = theme => ({
   root: {
@@ -28,54 +65,62 @@ const styles = theme => ({
       width: theme.spacing.unit * 7,
       height: '100%',
       position: 'absolute',
-      pointerEvents: 'none',
+      //pointerEvents: 'none',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      
     },
     inputRoot: {
       color: 'inherit',
       width: '100%',
     },
     inputInput: {
-      
       paddingTop: theme.spacing.unit,
       paddingRight: theme.spacing.unit,
       paddingBottom: theme.spacing.unit,
-      paddingLeft: theme.spacing.unit * 7,
+      paddingLeft: theme.spacing.unit * 9,
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('md')]: {
         width: 200,
       },
-    }
+    },
     
+    button: {
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      marginLeft: 9,
+      padding: 0,
+      color: "white",
+      
+    }
 });
 
-
+//() => buscarid(this.input)
 class Topbar extends Component {
   
   render() {
     const {classes, titulo} = this.props
     return (
       <div className={classes.root}>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h6" color="inherit">
             { titulo }
-            
           </Typography>
-          {/* <Dropdown style = {{margin:10, height: 1}}></Dropdown> */}
-          <div className={classes.search}>
+          <Dropdown style = {{margin:10, height: 1}}></Dropdown>
+          <div className={classes.search}> 
               <div className={classes.searchIcon}>
-              <SearchIcon/>
+              <Button  onClick = { () => buscarid("pikachu", this.props) } className={classes.button}><SearchIcon /></Button>
               </div>
               <InputBase
+                
                 placeholder="Buscar Pokémon"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                
               />
             </div>
         </Toolbar>
@@ -85,4 +130,4 @@ class Topbar extends Component {
   }
 }
 
-export default withStyles(styles)(Topbar);
+export default withStyles(styles)(withRouter(Topbar));
