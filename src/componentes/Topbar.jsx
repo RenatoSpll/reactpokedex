@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { withStyles } from '@material-ui/core';
+import { withStyles} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Dropdown from './Dropdown';
@@ -96,9 +94,32 @@ const styles = theme => ({
     }
 });
 
-//() => buscarid(this.input)
+
 class Topbar extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      pesquisa: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({pesquisa: event.target.pesquisa})
+  }
+
+  handleSubmit(event) {
+    
+    alert('A name was submitted: ' + this.state.pesquisa);
+    buscarid(this.state.pesquisa, this.props)
+    event.preventDefault();
+  }
+
+
+
+
   render() {
     const {classes, titulo} = this.props
     return (
@@ -110,19 +131,24 @@ class Topbar extends Component {
           </Typography>
           <Dropdown style = {{margin:10, height: 1}}></Dropdown>
           <div className={classes.search}> 
+            
+            <form onSubmit = {this.handleSubmit}>
               <div className={classes.searchIcon}>
-              <Button  onClick = { () => buscarid("pikachu", this.props) } className={classes.button}><SearchIcon /></Button>
+              <Button type = "submit" className = {classes.button}><SearchIcon/></Button>
               </div>
               <InputBase
-                
+                value= {this.state.pesquisa}
+                onChange = {this.handleChange}
                 placeholder="Buscar Pokémon"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
+                  
                 }}
-                
               />
-            </div>
+            </form> 
+            
+            </div>   
         </Toolbar>
       </AppBar>
       </div>
