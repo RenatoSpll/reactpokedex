@@ -16,21 +16,24 @@ const buscarid = async(busca, props)=>{
   const response = await fetch('https://pokeapi.co/api/v2/pokemon/')
   const data = await response.json()
   //const id = data.results[1].name
+  busca = busca.toLowerCase()
   for (var i=0; i<data.results.length;i++){
     //console.log(data.results[i].name)
     if(data.results[i].name===busca){
       var id = data.results[i].url
       console.log("achei um:")
+      id = id.split("https://pokeapi.co/api/v2/pokemon/")[1]
+      mudarTela(id,props)
       break
+      
     }
   } 
   
   
   //const string = ""
   //id.split(https://pokeapi.co/api/v2/id).[1]
-  console.log(id.split("https://pokeapi.co/api/v2/pokemon/")[1])
-  id = id.split("https://pokeapi.co/api/v2/pokemon/")[1]
-  mudarTela(id,props)
+  //console.log(id.split("https://pokeapi.co/api/v2/pokemon/")[1])
+  
 
   //const url = id.url
   //const string = "bulbassaur"
@@ -40,6 +43,7 @@ const buscarid = async(busca, props)=>{
 const mudarTela =(id, props) =>{
   //console.log(this.props)  
   props.history.push('/pokemon/'+id)
+  window.location.reload()
 
 }
  
@@ -107,12 +111,13 @@ class Topbar extends Component {
   }
 
   handleChange(event) {
-    this.setState({pesquisa: event.target.pesquisa})
+    this.setState({pesquisa: event.target.value})
+    console.log(this.state.pesquisa)
   }
 
   handleSubmit(event) {
     
-    alert('A name was submitted: ' + this.state.pesquisa);
+    
     buscarid(this.state.pesquisa, this.props)
     event.preventDefault();
   }
@@ -136,7 +141,7 @@ class Topbar extends Component {
               <div className={classes.searchIcon}>
               <Button type = "submit" className = {classes.button}><SearchIcon/></Button>
               </div>
-              <InputBase
+              <InputBase       
                 value= {this.state.pesquisa}
                 onChange = {this.handleChange}
                 placeholder="Buscar Pokémon"

@@ -28,7 +28,7 @@ class Pokemon extends Component {
     const id = this.props.match.params.id
     return (
     <div>
-        <Topbar titulo = "Pokemon" cor = "secondary"/>
+        <Topbar history ={this.props.history} titulo = "Pokemon" cor = "secondary"/>
         <div style={{marginTop: 64}}>
         <PokemonCard pokemonId ={id}/>
         
